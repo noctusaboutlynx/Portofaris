@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kegiatan — [Nama Teman]</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'DM Sans',sans-serif;
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#0b1120;
+    --bg-soft:#111927;
+    --bg-card:#131e2e;
+    --ink:#e8e4dc;
+    --muted:#8a9ab8;
+    --gold:#c8943a;
+    --gold-light:#e0b86a;
+    --line:rgba(232,228,220,.08);
+    --line-strong:rgba(232,228,220,.18);
+    --font-display:'Cormorant Garant',serif;
+}
+
+html{ background:var(--bg); }
+
+body{
+    background:var(--bg);
+    color:var(--ink);
+    overflow-x:hidden;
+}
+
+header{
+    max-width:1100px;
+    margin:0 auto;
+    padding:32px 6% 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-family:var(--font-display);
+    font-size:1.2rem;
+    font-weight:600;
+    color:var(--ink);
+    text-decoration:none;
+    letter-spacing:.5px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:34px;
+}
+
+nav a{
+    font-size:.82rem;
+    font-weight:500;
+    color:var(--muted);
+    text-decoration:none;
+    letter-spacing:.6px;
+    transition:.3s;
+    position:relative;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:1px;
+    background:var(--gold);
+    transition:.3s;
+}
+
+nav a:hover{ color:var(--ink); }
+nav a:hover::after{ width:100%; }
+
+nav a.active{
+    color:var(--gold);
+}
+nav a.active::after{
+    width:100%;
+}
+
+/* Intro */
+
+.intro{
+    max-width:1100px;
+    margin:0 auto;
+    padding:40px 6% 50px;
+    border-bottom:1px solid var(--line-strong);
+}
+
+.eyebrow{
+    font-size:.74rem;
+    font-weight:500;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+}
+
+.intro h1{
+    font-family:var(--font-display);
+    font-size:3rem;
+    font-weight:600;
+    margin-bottom:14px;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.12s;
+}
+
+.intro p{
+    color:var(--muted);
+    line-height:1.8;
+    max-width:540px;
+    font-size:.95rem;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.22s;
+}
+
+/* Gallery — 3 kolom */
+
+.gallery{
+    max-width:1100px;
+    margin:0 auto;
+    padding:50px 6% 100px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+.card{
+    background:var(--bg-card);
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    overflow:hidden;
+    transition:.35s;
+    opacity:0;
+    transform:translateY(18px);
+    position:relative;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width:3px;
+    background:var(--gold);
+    transform:scaleY(0);
+    transform-origin:bottom;
+    transition:.35s;
+    z-index:1;
+}
+
+.card.in-view{ opacity:1; transform:translateY(0); }
+
+.card:hover{
+    border-color:var(--gold);
+    transform:translateY(-5px);
+}
+
+.card:hover::before{ transform:scaleY(1); }
+
+.frame{
+    aspect-ratio:4/3;
+    overflow:hidden;
+    cursor:pointer;
+    position:relative;
+}
+
+.frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.5s;
+}
+
+.card:hover .frame img{ transform:scale(1.04); }
+
+.frame::after{
+    content:"\f00e";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink);
+    background:rgba(11,17,32,.35);
+    opacity:0;
+    transition:.35s;
+    font-size:1rem;
+}
+
+.card:hover .frame::after{ opacity:1; }
+
+.body{
+    padding:20px 22px 24px;
+}
+
+.tag{
+    font-size:.7rem;
+    font-weight:500;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+}
+
+.body h3{
+    font-family:var(--font-display);
+    font-size:1.25rem;
+    font-weight:500;
+    margin-bottom:8px;
+    color:var(--ink);
+}
+
+.body p{
+    color:var(--muted);
+    font-size:.87rem;
+    line-height:1.7;
+}
+
+/* Lightbox */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(7,10,18,.94);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    padding:40px;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:88vh;
+    border-radius:6px;
+    box-shadow:0 30px 70px rgba(0,0,0,.6);
+    animation:zoom .3s ease;
+}
+
+@keyframes zoom{
+    from{ transform:scale(.95); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
+}
+
+.lb-close{
+    position:absolute;
+    top:26px;
+    right:30px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--line-strong);
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.lb-close:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+}
+
+/* Footer */
+
+footer{
+    max-width:1100px;
+    margin:0 auto;
+    padding:28px 6% 50px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.copy{ font-size:.78rem; color:var(--muted); }
+
+.social a{
+    color:var(--muted);
+    font-size:.95rem;
+    text-decoration:none;
+    transition:.3s;
+}
+.social a:hover{ color:var(--gold); }
+
+@keyframes fadeUp{
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+@media(max-width:760px){
+    .gallery{ grid-template-columns:1fr; }
+    .intro h1{ font-size:2.2rem; }
+}
+
+@media(max-width:560px){
+    header{ flex-direction:column; gap:14px; padding:24px 6% 14px; }
+    nav ul{ gap:18px; }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<a class="logo" href="index.html">[Nama Teman]</a>
+<nav>
+<ul>
+<li><a href="index.html">Beranda</a></li>
+<li><a href="pengalaman.html">Pengalaman</a></li>
+<li><a href="kegiatan.html" class="active">Kegiatan</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="intro">
+<p class="eyebrow">Dokumentasi</p>
+<h1>Kegiatan Saya</h1>
+<p>Momen dan aktivitas yang telah saya jalani bersama teman-teman selama di sekolah. Klik gambar untuk melihat lebih besar.</p>
+</section>
+
+<div class="gallery">
+
+<div class="card">
+<div class="frame">
+<img src="https://i.ibb.co.com/xtntWfZ8/IMG-20251215-WA1002.jpg" alt="Kegiatan 1">
+</div>
+<div class="body">
+<div class="tag">01 — KElAS 8</div>
+<h3>Field trip</h3>
+<p>Kunjungan ke Jakarta dan Bandung untuk menambah wawasan dan pengalaman di luar kelas.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="frame">
+<img src="https://i.ibb.co.com/YBRHB8wH/Screenshot-2025-12-15-19-34-14-401-com-android-chrome-edit.jpg" alt="Kegiatan 2">
+</div>
+<div class="body">
+<div class="tag">02 — KELAS 8</div>
+<h3>JAKBAN</h3>
+<p>Rangkaian lomba dalam perayaan HUT RI, mulai dari basket, futsal, hingga berbagai permainan lainnya..</p>
+</div>
+</div>
+
+<div class="card">
+<div class="frame">
+<img src="https://i.ibb.co/Q3GgcZsh/IMG-20260618-WA0010.jpg" alt="Kegiatan 3">
+</div>
+<div class="body">
+<div class="tag">03 — KELAS 8</div>
+<h3>PENTAST DRAMA</h3>
+<p>Pentas drama bersama teman-teman sekelas yang penuh kebersamaan dan kerja sama.</p>
+</div>
+</div>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+<div class="lb-close" id="closeBtn">&times;</div>
+<img id="lightbox-img" alt="">
+</div>
+
+<footer>
+<p class="copy">© 2026 [FARIS]</p>
+<div class="social">
+<a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+</footer>
+
+<script>
+const cards = document.querySelectorAll(".card");
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("in-view"); });
+}, { threshold:.15 });
+cards.forEach(c=> observer.observe(c));
+
+const imgs = document.querySelectorAll(".frame img");
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lightbox-img");
+const closeBtn = document.getElementById("closeBtn");
+
+imgs.forEach(img=>{
+    img.onclick = ()=>{ lb.style.display="flex"; lbImg.src=img.src; lbImg.alt=img.alt; };
+});
+closeBtn.onclick = ()=> lb.style.display="none";
+lb.onclick = (e)=>{ if(e.target===lb) lb.style.display="none"; };
+document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") lb.style.display="none"; });
+</script>
+
+</body>
+</html>
