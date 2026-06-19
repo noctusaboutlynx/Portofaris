@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio — [Nama Teman]</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'DM Sans',sans-serif;
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#0b1120;
+    --bg-soft:#111927;
+    --bg-card:#131e2e;
+    --ink:#e8e4dc;
+    --muted:#8a9ab8;
+    --gold:#c8943a;
+    --gold-light:#e0b86a;
+    --line:rgba(232,228,220,.08);
+    --line-strong:rgba(232,228,220,.18);
+    --font-display:'Cormorant Garant',serif;
+}
+
+html{ background:var(--bg); }
+
+body{
+    background:var(--bg);
+    color:var(--ink);
+    overflow-x:hidden;
+}
+
+/* Header */
+
+header{
+    max-width:1100px;
+    margin:0 auto;
+    padding:32px 6% 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-family:var(--font-display);
+    font-size:1.2rem;
+    font-weight:600;
+    color:var(--ink);
+    text-decoration:none;
+    letter-spacing:.5px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:34px;
+}
+
+nav a{
+    font-size:.82rem;
+    font-weight:500;
+    color:var(--muted);
+    text-decoration:none;
+    letter-spacing:.6px;
+    transition:.3s;
+    position:relative;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:1px;
+    background:var(--gold);
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--ink);
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* Hero */
+
+.hero{
+    max-width:1100px;
+    margin:0 auto;
+    padding:60px 6% 80px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+}
+
+/* Photo — circular with gold ring */
+
+.photo-ring{
+    position:relative;
+    width:200px;
+    height:200px;
+    margin-bottom:48px;
+    opacity:0;
+    animation:fadeUp .9s ease forwards;
+}
+
+.photo-ring::before{
+    content:"";
+    position:absolute;
+    inset:-6px;
+    border-radius:50%;
+    background:conic-gradient(var(--gold) 0deg 120deg, transparent 120deg 240deg, var(--gold-light) 240deg 360deg);
+    opacity:.7;
+    animation:spinRing 14s linear infinite;
+}
+
+@keyframes spinRing{
+    to{ transform:rotate(360deg); }
+}
+
+.photo-ring img{
+    position:relative;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    border:4px solid var(--bg);
+    z-index:1;
+}
+
+/* Hero text */
+
+.hero-eyebrow{
+    font-size:.78rem;
+    font-weight:500;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:18px;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.2s;
+}
+
+.hero h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:4rem;
+    line-height:1.1;
+    letter-spacing:.5px;
+    margin-bottom:16px;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.32s;
+}
+
+.hero-sub{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.2rem;
+    color:var(--muted);
+    margin-bottom:36px;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.44s;
+}
+
+.divider-gold{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    justify-content:center;
+    margin-bottom:36px;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.54s;
+}
+
+.divider-gold span{
+    display:block;
+    width:60px;
+    height:1px;
+    background:var(--gold);
+    opacity:.5;
+}
+
+.divider-gold i{
+    color:var(--gold);
+    font-size:.7rem;
+}
+
+.hero p.lede{
+    color:var(--muted);
+    font-size:1rem;
+    line-height:1.9;
+    max-width:520px;
+    margin-bottom:40px;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.64s;
+}
+
+.actions{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+    animation-delay:.74s;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 28px;
+    background:var(--gold);
+    color:#0b1120;
+    text-decoration:none;
+    font-weight:500;
+    font-size:.88rem;
+    border-radius:3px;
+    letter-spacing:.4px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:var(--gold-light);
+    transform:translateY(-2px);
+}
+
+.btn-ghost{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 28px;
+    color:var(--ink);
+    text-decoration:none;
+    font-size:.88rem;
+    border:1px solid var(--line-strong);
+    border-radius:3px;
+    letter-spacing:.4px;
+    transition:.3s;
+}
+
+.btn-ghost:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+    transform:translateY(-2px);
+}
+
+/* Facts */
+
+.facts{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 6% 80px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line-strong);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    overflow:hidden;
+}
+
+.fact{
+    padding:32px 30px;
+    background:var(--bg-card);
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+
+.fact.in-view{ opacity:1; transform:translateY(0); }
+
+.fact .k{
+    font-size:.7rem;
+    font-weight:500;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+}
+
+.fact .v{
+    font-family:var(--font-display);
+    font-size:1.2rem;
+    font-weight:500;
+    color:var(--ink);
+}
+
+/* Section — explore */
+
+.section-label{
+    max-width:1100px;
+    margin:0 auto;
+    padding:70px 6% 28px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .7s ease, transform .7s ease;
+}
+
+.section-label.in-view{ opacity:1; transform:translateY(0); }
+
+.section-label span{
+    font-size:.72rem;
+    font-weight:500;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--gold);
+}
+
+.section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line-strong);
+}
+
+.explore{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 6% 100px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.explore-card{
+    display:block;
+    padding:36px 32px;
+    background:var(--bg-card);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:.35s;
+    opacity:0;
+    transform:translateY(16px);
+    position:relative;
+    overflow:hidden;
+}
+
+.explore-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:var(--gold);
+    transform:scaleY(0);
+    transform-origin:bottom;
+    transition:.35s;
+}
+
+.explore-card.in-view{ opacity:1; transform:translateY(0); }
+
+.explore-card:hover{
+    border-color:var(--gold);
+    transform:translateY(-4px);
+}
+
+.explore-card:hover::before{
+    transform:scaleY(1);
+}
+
+.explore-card .num{
+    font-family:var(--font-display);
+    font-size:2.2rem;
+    font-weight:300;
+    color:rgba(200,148,58,.2);
+    display:block;
+    margin-bottom:14px;
+    line-height:1;
+}
+
+.explore-card h3{
+    font-family:var(--font-display);
+    font-size:1.5rem;
+    font-weight:500;
+    margin-bottom:10px;
+}
+
+.explore-card p{
+    color:var(--muted);
+    font-size:.88rem;
+    line-height:1.7;
+}
+
+.explore-card .go{
+    margin-top:18px;
+    font-size:.82rem;
+    font-weight:500;
+    color:var(--gold);
+    letter-spacing:.4px;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    transition:gap .3s;
+}
+
+.explore-card:hover .go{ gap:12px; }
+
+/* Footer */
+
+footer{
+    max-width:1100px;
+    margin:0 auto;
+    padding:28px 6% 50px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.copy{
+    font-size:.78rem;
+    color:var(--muted);
+}
+
+.social a{
+    color:var(--muted);
+    font-size:.95rem;
+    text-decoration:none;
+    transition:.3s;
+}
+.social a:hover{ color:var(--gold); }
+
+/* Animations */
+
+@keyframes fadeUp{
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+    .facts{ grid-template-columns:1fr; }
+    .explore{ grid-template-columns:1fr; }
+    .hero h1{ font-size:2.8rem; }
+}
+
+@media(max-width:560px){
+    header{ flex-direction:column; gap:16px; padding:24px 6% 16px; }
+    nav ul{ gap:20px; }
+    .hero h1{ font-size:2.2rem; }
+    .photo-ring{ width:160px; height:160px; }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    .photo-ring::before{ animation:none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<a class="logo" href="index.html">[Faris]</a>
+<nav>
+<ul>
+<li><a href="index.html">Beranda</a></li>
+<li><a href="prestasi.html">Pengalaman</a></li>
+<li><a href="kenangan.html">Kegiatan</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+
+<div class="photo-ring">
+<img src="https://i.ibb.co.com/xS6mRKcd/Screenshot-2026-06-19-08-24-43-197-com-whatsapp-w4b-edit.jpg" alt="Faris">
+</div>
+
+<p class="hero-eyebrow">Portofolio</p>
+
+<h1>[Muhammad faris pratama]</h1>
+
+<p class="hero-sub">Pelajar · [Padel] · [Badminton]</p>
+
+<div class="divider-gold">
+<span></span>
+<i class="fa-solid fa-diamond"></i>
+<span></span>
+</div>
+
+<p class="lede">
+Perkenalkan nama saya muh faris pratama kelas 8 alkhawarizmi
+</p>
+
+<div class="actions">
+<a href="pengalaman.html" class="btn">Lihat Pengalaman</a>
+<a href="kegiatan.html" class="btn-ghost">Lihat Kegiatan</a>
+</div>
+
+</section>
+
+<section class="facts">
+<div class="fact">
+<div class="k">Sekolah</div>
+<div class="v">[Smp islam athirah 1 Makassar]</div>
+</div>
+<div class="fact">
+<div class="k">Kelas</div>
+<div class="v">[8]</div>
+</div>
+<div class="fact">
+<div class="k">Minat</div>
+<div class="v">[Badminton]</div>
+</div>
+</section>
+
+<div class="section-label">
+<span>Jelajahi</span>
+</div>
+
+<section class="explore">
+<a href="pengalaman.html" class="explore-card">
+<span class="num">01</span>
+<h3>Pengalaman</h3>
+<p>Rangkuman pencapaian dan hal-hal yang pernah diikuti selama menjadi pelajar, baik akademik maupun non-akademik.</p>
+<span class="go">Lihat selengkapnya <i class="fa-solid fa-arrow-right"></i></span>
+</a>
+<a href="kegiatan.html" class="explore-card">
+<span class="num">02</span>
+<h3>Kegiatan</h3>
+<p>Dokumentasi momen dan aktivitas yang telah dijalani bersama teman-teman di sekolah.</p>
+<span class="go">Lihat selengkapnya <i class="fa-solid fa-arrow-right"></i></span>
+</a>
+</section>
+
+<footer>
+<p class="copy">© 2026 [Faris]</p>
+<div class="social">
+<a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+</footer>
+
+<script>
+const targets = document.querySelectorAll(".fact, .explore-card, .section-label");
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add("in-view"); }
+    });
+}, { threshold:.15 });
+
+targets.forEach(el=> observer.observe(el));
+</script>
+
+</body>
+</html>
